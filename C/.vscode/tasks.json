@@ -1,0 +1,10 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "buildProject",
+        "type": "shell",
+        "command": "echo compiling C example 🖥️ && gcc -o main main.c -g -lm -Wall -Werror -Wpedantic -Waggressive-loop-optimizations",       
+      }
+    ]
+}
