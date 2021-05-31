@@ -56,8 +56,8 @@ emailer.sendEmail({
 let sg_emailer = container.get<IEmailService>(TYPES.SendGridEmailer);
 
 sg_emailer.sendEmail({
-    to: 'davidjmstewart@gmail.com', // If you have a valid SendGrid API key and want to see a real email sent, change this to the recipient's address
-    from: 'setnet@creativelighting.com.au',  // If you have a valid SendGrid API key and want to see a real email sent, change this to the email address associated with your SendGrid account
+    to: 'recipient@address.com', // If you have a valid SendGrid API key and want to see a real email sent, change this to the recipient's address
+    from: 'your_sendgrid_email_account@address.com.au',  // If you have a valid SendGrid API key and want to see a real email sent, change this to the email address associated with your SendGrid account
     subject: 'Here is an email constructed with Inversify and sent with SendGrid',
     html: '<strong>💉💉💉 This is using the inversify framework and complies with dependency inversion! Sent using the SendGrid API</strong>',
 })
@@ -67,8 +67,8 @@ sg_emailer.sendEmail({
 let mj_emailer = container.get<IEmailService>(TYPES.MailJetEmailer);
 
 mj_emailer.sendEmail({
-    to: 'davidjmstewart@gmail.com', // If you have valid MailJet API keys and want to see a real email sent, change this to the recipient's address
-    from: 'davidjmstewart@gmail.com',  // If you have valid MailJet API keys and want to see a real email sent, change this to the email address associated with your MailJet account
+    to: 'recipient@address.com', // If you have valid MailJet API keys and want to see a real email sent, change this to the recipient's address
+    from: 'your_mailjet_email_account@address.com',  // If you have valid MailJet API keys and want to see a real email sent, change this to the email address associated with your MailJet account
     subject: 'Here is an email constructed with Inversify and sent with MailJet',
     html: '<strong>💉💉💉 This is using the inversify framework and complies with dependency inversion! Sent using the MailJet API</strong>',
 })

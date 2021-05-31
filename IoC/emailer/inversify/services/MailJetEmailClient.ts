@@ -19,9 +19,6 @@ export class MailJetEmailClient {
         @inject(TYPES.MailJetPublicKey) publicKey: string,
         @inject(TYPES.MailJetPrivateKey) privateKey: string
     ) {
-        console.log(`Public Key: ${publicKey}`);
-        console.log(`Private Key: ${privateKey}`);
-
         this.client = mailjet.connect(publicKey, privateKey);    
     }
 
