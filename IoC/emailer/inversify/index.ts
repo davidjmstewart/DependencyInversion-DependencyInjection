@@ -1,6 +1,7 @@
-//Build with: npm run build
-//After building, run with: npm start
-//Make sure your API keys are set and you are using the correct email address
+//Install modules:  npm install
+//Build with:       npm run build
+//Run with:         npm start
+//Make sure your API keys are set in .env and you are using the correct email address
 
 
 import { TYPES } from "./ioc_types";
