@@ -9,4 +9,7 @@ export const TYPES = {
     MailJetPrivateKey: Symbol("MailJetPrivateKey"),
     MailJetEmailer: Symbol("MailJetEmailer"),
     MailJetClient: Symbol("MailJetClient"),
+
+    MailService: Symbol("MailService"),
+    ApplicationEmailer: Symbol("ApplicationEmailer"),
 };

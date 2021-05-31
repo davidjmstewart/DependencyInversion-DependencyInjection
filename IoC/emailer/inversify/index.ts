@@ -4,26 +4,47 @@
 
 
 import { TYPES } from "./ioc_types";
-import { IEmailService } from "interfaces";
 import container from "./inversify.config";
+import { ApplicationEmailer } from "services/ApplicationEmailer";
 
 require('dotenv').config();
+
+//OPTION 1 - Construct the application emailer class that the inversify framework will properly construct
+// with the correct wrapper class, based on the environment variables
+
+const applicationEmailer: ApplicationEmailer = container.get<ApplicationEmailer>(TYPES.ApplicationEmailer);
+
+applicationEmailer.send({
+    to: 'davidjmstewart@gmail.com',
+    from: 'setnet@creativelighting.com.au',
+    subject: 'Here is an email constructed with Inversify, using the ApplicationEmailer class',
+    html: '<strong>💉💉💉 This is using the inversify framework and complies with dependency inversion! Not sure which provider we are using, but we don\'t care! Check the console logs to see which email provider we used</strong>',
+})
+    .then(() => console.log('Email sent using the production provider and ApplicationEmailer class'))
+    .catch((e) => console.error(e));
+
+
+//OPTION 2 - Change the call to the container based on the environment variable  (remove block comments /* */ to run)
 
 // construct an an emailer using the correct provider specified in an environment variable
 // if you want to change to the MailJet provider, change PRODUCTION_EMAIL_PROVIDER in your .env file 
 // technically anything other than SENDGRID as the value will result in MailJet being used
+
+/*
 const emailer: IEmailService = process.env.PRODUCTION_EMAIL_PROVIDER === 'SENDGRID' ? container.get<IEmailService>(TYPES.SendGridEmailer) : container.get<IEmailService>(TYPES.MailJetEmailer);
 
 emailer.sendEmail({
     to: 'recipient@recipient.com', 
-    from: 'yoursendgridemail@address.com',
+    from: 'your_email_that_matches_the_account_associated_with_your_api_keys@address.com',
     subject: 'Here is an email constructed with Inversify.',
     html: '<strong>💉💉💉 This is using the inversify framework and complies with dependency inversion! Not sure which provider we are using, but we don\'t care! Check the console logs to see which email provider we used</strong>',
 })
     .then(() => console.log('Email sent using the production provider'))
     .catch((e) => console.error(e));
 
-// construct an emailers of both types (remove block comment to run)
+*/
+
+//OPTION 3 - construct an emailers of both types (remove block comments /* */ to run)
 
 /*
 // we do not construct this object ourselves. Instead, we reach into the container and tell it we want

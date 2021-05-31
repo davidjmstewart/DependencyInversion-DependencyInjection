@@ -13,6 +13,7 @@ import { SendGridEmailer } from "./services/SendGridEmailer";
 import { MailService } from "@sendgrid/mail";
 import { MailJetEmailer } from "./services/MailJetEmailer";
 import { MailJetEmailClient } from "./services/MailJetEmailClient";
+import { ApplicationEmailer } from "./services/ApplicationEmailer";
 
 let container = new Container();
 
@@ -38,5 +39,14 @@ container.bind<string>(TYPES.MailJetPublicKey).toConstantValue(process.env.MJ_AP
 container.bind<string>(TYPES.MailJetPrivateKey).toConstantValue(process.env.MJ_APIKEY_PRIVATE!);
 container.bind<MailJetEmailer>(TYPES.MailJetEmailer).to(MailJetEmailer).inSingletonScope();
 container.bind<MailJetEmailClient>(TYPES.MailJetClient).to(MailJetEmailClient).inSingletonScope();
+
+// Bindings for our ApplicationEmailer: our class that can have any IEmailService injected into it
+if (process.env.PRODUCTION_EMAIL_PROVIDER == "SENDGRID") {
+    container.bind<SendGridEmailer>(TYPES.MailService).to(SendGridEmailer).inSingletonScope();
+} else { // anything other than SENDGRID will be treated as MAILJET for this example
+    container.bind<MailJetEmailer>(TYPES.MailService).to(MailJetEmailer).inSingletonScope();
+}
+
+container.bind<ApplicationEmailer>(TYPES.ApplicationEmailer).to(ApplicationEmailer).inSingletonScope();
 
 export default container;
