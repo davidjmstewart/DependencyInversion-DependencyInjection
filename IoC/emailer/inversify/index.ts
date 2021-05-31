@@ -16,8 +16,8 @@ require('dotenv').config();
 const applicationEmailer: ApplicationEmailer = container.get<ApplicationEmailer>(TYPES.ApplicationEmailer);
 
 applicationEmailer.send({
-    to: 'davidjmstewart@gmail.com',
-    from: 'setnet@creativelighting.com.au',
+    to: 'recipient@address.com',
+    from: 'your_email_that_matches_the_account_associated_with_your_api_keys@address.com',
     subject: 'Here is an email constructed with Inversify, using the ApplicationEmailer class',
     html: '<strong>💉💉💉 This is using the inversify framework and complies with dependency inversion! Not sure which provider we are using, but we don\'t care! Check the console logs to see which email provider we used</strong>',
 })
